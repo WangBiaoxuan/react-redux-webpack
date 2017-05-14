@@ -1,0 +1,69 @@
+@import '~animate.css';
+@import './mixins';
+@import './variables';
+@import './format';
+@import './motion';
+
+html {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  * {
+    font-family: 'PingFang SC', 'Lantinghei SC', 'Helvetica Neue', 'Helvetica', 'Arial', 'Microsoft YaHei', '微软雅黑', 'STHeitiSC-Light', 'simsun', '宋体', 'WenQuanYi Zen Hei', 'WenQuanYi Micro Hei', 'sans-serif';
+  }
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-size: 125%;
+}
+
+body {
+  font-size: 14px;
+  background-color: #f2f3f5;
+}
+
+a {
+  text-decoration: none;
+  outline: none;
+
+  &:active,
+  &:focus {
+    outline: none;
+  }
+}
+
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.clearfix {
+  &::after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+}
+
+.container {
+  width: @containerWidth;
+  margin: 0 auto;
+
+  &::after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+}
+
+.ReactModal__Body--open {
+  overflow: hidden;
+}

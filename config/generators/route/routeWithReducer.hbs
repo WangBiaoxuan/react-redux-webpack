@@ -1,0 +1,16 @@
+ {
+      path: '{{ path }}',
+      name: '{{ camelCase component }}',
+      getComponent(nextState, cb) {
+        require.ensure([
+          '../containers/{{ properCase component }}',
+          '../containers/{{ properCase component }}/reducer',
+        ], (require) => {
+          const component = require('../containers/{{ properCase component }}');
+          const reducer = require('../containers/{{ properCase component }}/reducer').default;
+
+          injectReducer('{{ camelCase component }}', reducer);
+          loadModule(cb, component);
+        });
+      },
+    },$1

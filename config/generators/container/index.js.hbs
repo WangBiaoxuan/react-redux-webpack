@@ -1,0 +1,60 @@
+/**
+ * {{properCase name }}
+ */
+
+/**
+ * External dependencies
+ */
+import React, { PropTypes, {{{ component }}} } from 'react';
+import { connect } from 'react-redux';
+{{#if wantHeaders}}
+import Helmet from 'react-helmet';
+{{/if}}
+
+/**
+ * Internal dependencies
+ */
+import './style.less';
+{{#if wantActionsAndReducer}}
+{{/if}}
+
+export class {{ properCase name }} extends {{{ component }}} {
+  render() {
+    return (
+      <div className="{{dashCase name}}-container">
+      {{#if wantHeaders}}
+        <Helmet
+          title="{{properCase name}}"
+          meta={{curly true}}[
+            {{curly true}} name: 'description', content: 'Description of {{properCase name}}' {{curly}},
+          ]{{curly}}
+        />
+      {{/if}}
+        {{ properCase name }}
+      </div>
+    );
+  }
+}
+
+{{ properCase name }}.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+};
+
+{{#if wantActionsAndReducer}}
+function mapStateToProps(state, props) {
+  return {
+  };
+}
+{{/if}}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch,
+  };
+}
+
+{{#if wantActionsAndReducer}}
+export default connect(mapStateToProps, mapDispatchToProps)({{ properCase name }});
+{{else}}
+export default connect(null, mapDispatchToProps)({{ properCase name }});
+{{/if}}

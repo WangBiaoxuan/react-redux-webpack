@@ -1,0 +1,9 @@
+ {
+      path: '{{ path }}',
+      name: '{{ camelCase component }}',
+      getComponent(nextState, cb) {
+        require.ensure([], (require) => {
+          loadModule(cb, require('../{{{directory (properCase component)}}}'));
+        });
+      },
+    },$1
