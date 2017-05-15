@@ -37,8 +37,9 @@ function setupCompiler(host, port, protocol) {
 
   compiler.plugin('invalid', function() {
     if (isInteractive) {
-      clearConsole();
+      //clearConsole();
     }
+
     console.log('Bundle compiling...');
   });
 
@@ -46,7 +47,7 @@ function setupCompiler(host, port, protocol) {
 
   compiler.plugin('done', function(stats) {
     if (isInteractive) {
-      clearConsole();
+      //clearConsole();
     }
 
     const messages = formatWebpackMessages(stats.toJson({}, true));
@@ -169,13 +170,15 @@ function runDevServer(host, port, protocol) {
     if (err) {
       return console.log(err);
     }
+
     if (isInteractive) {
-      clearConsole();
+      //clearConsole();
     }
+
     console.log(chalk.cyan('Starting the development server...'));
     console.log();
     if (isInteractive) {
-      openBrowser('http://local.youyutouzi.com');
+      openBrowser('http://xrzh5.36kr.com');
     }
   });
 }
@@ -194,7 +197,7 @@ detect(DEFAULT_PORT).then(port => {
   }
 
   if (isInteractive) {
-    clearConsole();
+    //clearConsole();
     const existingProcess = getProcessForPort(DEFAULT_PORT);
     const question =
       chalk.yellow('Something is already running on port ' + DEFAULT_PORT + '.' +

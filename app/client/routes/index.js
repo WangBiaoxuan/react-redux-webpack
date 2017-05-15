@@ -12,6 +12,7 @@ import { Router, browserHistory, createMemoryHistory, applyRouterMiddleware } fr
 import { injectors } from '../store/reducers';
 import { isLogin, goToLogin, getUserInfo } from '../utils/user';
 import demoRoute from './pages/demo';
+import bdOrgRoute from './pages/bdorg';
 
 export const getClientHistory = (store) =>
   syncHistoryWithStore(browserHistory, store, {
@@ -82,6 +83,8 @@ const rootRoute = function (store) {
 
     childRoutes: [
       demoRoute(loadModule, injectReducer),
+      bdOrgRoute(loadModule, injectReducer),
+
       {
       path: '*',
       name: 'notfound',
@@ -90,7 +93,9 @@ const rootRoute = function (store) {
           loadModule(cb, require('../containers/NotFound'));
         });
       },
+
     }],
+
   };
 };
 

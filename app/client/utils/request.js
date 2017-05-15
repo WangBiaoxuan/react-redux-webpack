@@ -11,6 +11,8 @@ import Cookie from 'js-cookie';
 import config from '../api';
 import message from '../components/Message';
 
+axios.defaults.withCredentials = true;
+
 const showError = function (msg) {
   message.error(msg);
 };
@@ -36,23 +38,23 @@ function errCallback(response) {
   throw error;
 }
 
-export function get(url, params) {
-  const urlPrefix = process.env.NODE_ENV === 'development' ? '/api' : config.apiBase;
+export function get(url, params, cookies = {}) {
+  const urlPrefix = process.env.NODE_ENV === 'development' ? config.apiTestBase : config.apiBase;
   url = urlPrefix + url;
 
   console.info('GET: ', url);
 
-  if(params) {
+  if (params) {
     console.info('Params: ', params);
     url += `?${qs.stringify(params)}`;
   }
 
   return axios.get(url, {
     headers: {
-      Accept: 'application/json'
+      Accept: 'application/json',
     },
   })
-    .then(sucCallback, errCallback)
+    .then(sucCallback, errCallback);
 }
 
 export function post(url, body) {

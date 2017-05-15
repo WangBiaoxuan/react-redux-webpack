@@ -2,7 +2,6 @@
  * External dependencies
  */
 import React, { PropTypes, Component } from 'react';
-import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 
 /**
@@ -10,22 +9,25 @@ import { connect } from 'react-redux';
  */
 import './style.less';
 import * as actions from './actions';
+import { isLogin } from '../../utils/user';
 
 class Layout extends Component {
+  componentDidMount() {
+    const { userInfoData } = this.props;
+
+    if (isLogin() && !userInfoData) {
+      this.props.loadUserInfo();
+    }
+  }
 
   render() {
-    const { children } = this.props;
+    const { children, userInfoData, userInfoLoading } = this.props;
+    console.log('1', userInfoData);
+    console.log('2', userInfoLoading);
 
     return (
       <div className="layout-container">
-        <Helmet
-          titleTemplate="%s - 有娱投资"
-          defaultTitle="有娱投资"
-          meta={[
-            { name: 'description', content: '有娱投资' },
-          ]}
-        />
-      {React.Children.toArray(children)}
+        {React.Children.toArray(children)}
       </div>
     );
   }
@@ -38,7 +40,7 @@ Layout.propTypes = {
 
 function mapStateToProps(state, props) {
   const layout = state.layout;
-
+  console.log('99', state);
   return {
     userInfoData: layout.getIn(['userInfo', 'data']),
     userInfoLoading: layout.getIn(['userInfo', 'loading']),

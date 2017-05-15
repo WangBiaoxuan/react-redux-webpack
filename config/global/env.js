@@ -7,7 +7,9 @@ function getClientEnvironment(publicUrl) {
     .reduce((env, key) => {
       env[key] = JSON.stringify(process.env[key]);
       return env;
-    }, {
+    },
+
+    {
       'NODE_ENV': JSON.stringify(
         process.env.NODE_ENV || 'development'
       ),
