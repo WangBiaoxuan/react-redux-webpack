@@ -9,7 +9,8 @@ export function loadBDOrgList(params) {
       type: types.LOAD_BDORG_INFO,
     });
 
-    return get(`mobi-investor/rank/org/list?`, params).then((data) => {
+    return get(`/mobi-investor/rank/org/list?`, params).then((data) => {
+      console.log('==', data);
       dispatch(getBDOrgSuc(data));
     });
   };

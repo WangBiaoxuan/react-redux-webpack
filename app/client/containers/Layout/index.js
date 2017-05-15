@@ -40,7 +40,6 @@ Layout.propTypes = {
 
 function mapStateToProps(state, props) {
   const layout = state.layout;
-  console.log('99', state);
   return {
     userInfoData: layout.getIn(['userInfo', 'data']),
     userInfoLoading: layout.getIn(['userInfo', 'loading']),

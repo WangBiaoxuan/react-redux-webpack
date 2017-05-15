@@ -19,6 +19,13 @@ export class BDOrg extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {};
+    const id = this.props.params.id;
+    const query = this.props.location.query;
+    const page = query.page ? query.page : '1';
+    const pageSize = query.pageSize ? query.pageSize : '10';
+    if (!this.props.listData) {
+      this.props.loadList(id, page, pageSize);
+    }
   }
 
   componentDidMount() {
@@ -32,6 +39,10 @@ export class BDOrg extends PureComponent {
   }
 
   render() {
+    const { listData, listLoading } = this.props;
+    console.log(listData);
+    console.log(listLoading);
+
     return (
       <div className="bdorg-container">
           <Helmet
