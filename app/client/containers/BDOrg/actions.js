@@ -10,7 +10,6 @@ export function loadBDOrgList(params) {
     });
 
     return get(`/mobi-investor/rank/org/list?`, params).then((data) => {
-      console.log('==', data);
       dispatch(getBDOrgSuc(data));
     });
   };

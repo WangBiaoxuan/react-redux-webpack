@@ -5,10 +5,11 @@
 /**
  * External dependencies
  */
-import React, { PropTypes, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { Link } from 'react-router';
+import PropTypes from 'prop-types';
 
 /**
  * Internal dependencies

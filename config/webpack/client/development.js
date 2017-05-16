@@ -20,7 +20,6 @@ const publicPath = '/';
 const publicUrl = '';
 const env = getClientEnvironment(publicUrl);
 
-console.log('====', env);
 module.exports = {
   entry: [
     require.resolve('react-dev-utils/webpackHotDevClient'),
