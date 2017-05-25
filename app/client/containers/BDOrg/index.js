@@ -8,6 +8,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
+import ProjectItem from '../../components/projectItem';
 
 /**
  * Internal dependencies
@@ -38,6 +39,12 @@ export class BDOrg extends PureComponent {
     }
   }
 
+  renderList(data) {
+    return data.data && data.data.length ? data.data.map((item, index) => {
+      return <ProjectItem loading={false} data={item} key={`project-item-${index}`}  id={`${index}`}/>;
+    }) : '<div text="暂时没有数据哦" />';
+  }
+
   render() {
     const { listData, listLoading } = this.props;
     console.log(listData);
@@ -54,7 +61,13 @@ export class BDOrg extends PureComponent {
           />
         <div className="bdorg-content">
             <div className="bdorg-top"></div>
-            这是一个bgorg测试
+              <div className="projects-list-list">
+                {
+                  listData
+                  ? this.renderList(listData)
+                  : ''
+                }
+              </div>
           </div>
       </div>
     );
@@ -63,14 +76,9 @@ export class BDOrg extends PureComponent {
 
 function mapStateToProps(state, props) {
   const helpList = state.bgorg;
-  const id = props.params.id;
-  const query = props.location.query;
-  const page = query.page ? query.page : '1';
-  const pageSize = query.pageSize ? query.pageSize : '10';
-
   return {
-    listLoading: helpList.getIn(['loading', id, page, pageSize]),
-    listData: helpList.getIn(['data', id, page, pageSize]),
+    listLoading: helpList.get('loading'),
+    listData: helpList.get('listData'),
   };
 }
 
