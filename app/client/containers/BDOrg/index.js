@@ -8,7 +8,13 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
-import ProjectItem from '../../components/projectItem';
+import InfiniteScroll from 'react-infinite-scroller';
+
+/**
+* internal
+*/
+import ProjectItem from '../../components/ProjectItem';
+import LoadHint from '../../components/LoadHint';
 
 /**
  * Internal dependencies
@@ -16,39 +22,43 @@ import ProjectItem from '../../components/projectItem';
 import './style.less';
 import * as actions from './actions';
 
-export class BDOrg extends PureComponent {
+export class BdOrg extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {};
-    const id = this.props.params.id;
     const query = this.props.location.query;
     const page = query.page ? query.page : '1';
     const pageSize = query.pageSize ? query.pageSize : '10';
     if (!this.props.listData) {
-      this.props.loadList(id, page, pageSize);
+      this.props.loadList(page, pageSize);
     }
   }
 
   componentDidMount() {
-    const id = this.props.params.id;
-    const query = this.props.location.query;
-    const page = query.page ? query.page : '1';
-    const pageSize = query.pageSize ? query.pageSize : '10';
-    if (!this.props.listData) {
-      this.props.loadList(id, page, pageSize);
-    }
+    console.log(this.props);
+  }
+
+  hasMore() {
+    const { page, totalPages } = this.props;
+    return page < totalPages;
+  }
+
+  loadItems(page) {
+    let pageSize = 10;
+    this.props.loadList(page, pageSize);
   }
 
   renderList(data) {
     return data.data && data.data.length ? data.data.map((item, index) => {
-      return <ProjectItem loading={false} data={item} key={`project-item-${index}`}  id={`${index}`}/>;
-    }) : '<div text="暂时没有数据哦" />';
+      return <ProjectItem  data={item} key={`project-item-${index}`}  id={`${index}`}/>;
+    }) : <div>暂时没有数据哦</div>;
   }
 
   render() {
     const { listData, listLoading } = this.props;
-    console.log(listData);
-    console.log(listLoading);
+    let items = [];
+    console.log(Array.isArray(listData), '=====');
+    items.concat(Array.from(listData ? listData : []));
 
     return (
       <div className="bdorg-container">
@@ -61,11 +71,11 @@ export class BDOrg extends PureComponent {
           />
         <div className="bdorg-content">
             <div className="bdorg-top"></div>
-              <div className="projects-list-list">
+              <div className="projects-list">
                 {
-                  listData
-                  ? this.renderList(listData)
-                  : ''
+                  listLoading || (!listLoading && items)
+                  ? this.renderList(items)
+                  : <LoadHint></LoadHint>
                 }
               </div>
           </div>
@@ -75,18 +85,24 @@ export class BDOrg extends PureComponent {
 }
 
 function mapStateToProps(state, props) {
-  const helpList = state.bgorg;
+  const bdOrgList = state.bgorg;
+  const query = props.location.query;
+  const page = query.page ? query.page : '1';
+
   return {
-    listLoading: helpList.get('loading'),
-    listData: helpList.get('listData'),
+    totalCount: bdOrgList.get('totalCount'),
+    page: bdOrgList.get('page'),
+    totalPages: bdOrgList.get('totalPages'),
+    listLoading: bdOrgList.get('loading'),
+    listData: bdOrgList.getIn(['listData', page]),
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    loadList: (id, page, pageSize) => dispatch(actions.loadBDOrgList(id, page, pageSize)),
+    loadList: (page, pageSize) => dispatch(actions.loadBDOrgList(page, pageSize)),
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(BDOrg);
+export default connect(mapStateToProps, mapDispatchToProps)(BdOrg);

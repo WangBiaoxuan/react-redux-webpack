@@ -10,14 +10,19 @@ class ProjectItem extends PureComponent {
   render() {
     const { data, id } = this.props;
     let metal;
+    let border;
     if (id === '0') {
       metal = <img src={require('./imgs/bd-gold-metal.png')} alt=""/>;
+      border = 'cover gold-border';
     } else if (id === '1') {
       metal = <img src={require('./imgs/bd-silver-metal.png')} alt=""/>;
+      border = 'cover silver-border';
     } else if (id === '2') {
       metal = <img src={require('./imgs/bd-copper-metal.png')} alt=""/>;
+      border = 'cover copper-border';
     } else {
-      metal = <span>{parseInt(id, 10) + 1}</span>;
+      metal = <span>{Number.parseInt(id, 10) + 1}</span>;
+      border = 'cover normal-border';
     }
 
     return <Link to={`/project/`} id={id}>
@@ -25,12 +30,15 @@ class ProjectItem extends PureComponent {
               {metal}
           </div>
           <div className="logo">
-            <div className="cover" style={{ backgroundImage: `url(${get(data, 'logo')})`}}></div>
+            <div className={border} style={{ backgroundImage: `url(${get(data, 'logo')})` }}></div>
           </div>
           <div className="content">
-          <span>{get(data, 'name')}</span>
-          <span>{get(data, 'projectCount')}</span>
-          <span>{get(data, 'projectCount')}</span>
+            <div className="title">{get(data, 'name')}</div>
+            <div className="num">{get(data, 'projectCount')}</div>
+            <div className="phase">{get(data, 'projectCount')}</div>
+          </div>
+          <div className="spec">
+            <span className="num">{get(data, 'projectCount')}</span>
           </div>
         </Link>;
   }

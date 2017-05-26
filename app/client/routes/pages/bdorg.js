@@ -4,11 +4,11 @@ export default function aboutRoute(loadModule, injectReducer) {
     name: 'bgorg',
     getComponent(nextState, cb) {
       require.ensure([
-        '../../containers/BDOrg',
-        '../../containers/BDOrg/reducer',
+        '../../containers/BdOrg',
+        '../../containers/BdOrg/reducer',
       ], (require) => {
-        const component = require('../../containers/BDOrg');
-        const reducer = require('../../containers/BDOrg/reducer').default;
+        const component = require('../../containers/BdOrg');
+        const reducer = require('../../containers/BdOrg/reducer').default;
 
         injectReducer('bgorg', reducer);
         loadModule(cb, component);

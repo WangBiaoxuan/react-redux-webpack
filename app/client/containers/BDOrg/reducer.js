@@ -9,6 +9,9 @@ const initialState = fromJS({
     loading: true,
     listData: [],
     error: {},
+    page: {},
+    totalCount: {},
+    totalPages: {},
   },
 });
 
@@ -17,7 +20,10 @@ function BdOrgReducer(state = initialState, action) {
     case types.LOAD_BDORG_INFO:
       return state
         .set('loading', false)
-        .set('listData', action.data);
+        .set('page', action.data && action.data.page  ? action.data.page : 1)
+        .set('totalCount', action.data && action.data.totalCount  ? action.data.totalCount : 0)
+        .set('totalPages', action.data && action.data.totalPages ? action.data.totalPages : 0)
+        .setIn(['listData', action.page], action.data);
     default:
       return state;
   }
