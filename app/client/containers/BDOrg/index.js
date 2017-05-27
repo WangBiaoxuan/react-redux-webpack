@@ -8,7 +8,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
-import InfiniteScroll from 'react-infinite-scroller';
+import InfiniteScroll from 'redux-infinite-scroll';
 
 /**
 * internal
@@ -56,9 +56,6 @@ export class BdOrg extends PureComponent {
 
   render() {
     const { listData, listLoading } = this.props;
-    let items = [];
-    console.log(Array.isArray(listData), '=====');
-    items.concat(Array.from(listData ? listData : []));
 
     return (
       <div className="bdorg-container">
@@ -73,8 +70,8 @@ export class BdOrg extends PureComponent {
             <div className="bdorg-top"></div>
               <div className="projects-list">
                 {
-                  listLoading || (!listLoading && items)
-                  ? this.renderList(items)
+                  listLoading || (!listLoading && listData)
+                  ? this.renderList(listData)
                   : <LoadHint></LoadHint>
                 }
               </div>
