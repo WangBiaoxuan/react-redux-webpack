@@ -21,13 +21,12 @@ class Layout extends Component {
   }
 
   render() {
-    const { children, userInfoData, userInfoLoading } = this.props;
-    console.log('1', userInfoData);
-    console.log('2', userInfoLoading);
-
+    const { children } = this.props;
     return (
-      <div className="layout-container">
-        {React.Children.toArray(children)}
+      <div className="layout-container" >
+        <div >
+          {React.Children.toArray(children)}
+        </div>
       </div>
     );
   }

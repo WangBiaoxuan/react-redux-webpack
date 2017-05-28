@@ -93,9 +93,7 @@ const rootRoute = function (store) {
           loadModule(cb, require('../containers/NotFound'));
         });
       },
-
     }],
-
   };
 };
 

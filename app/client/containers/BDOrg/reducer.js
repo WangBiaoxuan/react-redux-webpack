@@ -5,13 +5,14 @@ import { fromJS } from 'immutable';
  */
 import * as types from './constants';
 const initialState = fromJS({
-  bdOrg: {
+  orgInfo: {
     loading: true,
-    listData: [],
+    listData: false,
     error: {},
-    page: {},
+    page: 1,
     totalCount: {},
     totalPages: {},
+    hasMore: true,
   },
 });
 
@@ -19,11 +20,12 @@ function BdOrgReducer(state = initialState, action) {
   switch (action.type) {
     case types.LOAD_BDORG_INFO:
       return state
-        .set('loading', false)
-        .set('page', action.data && action.data.page  ? action.data.page : 1)
-        .set('totalCount', action.data && action.data.totalCount  ? action.data.totalCount : 0)
-        .set('totalPages', action.data && action.data.totalPages ? action.data.totalPages : 0)
-        .setIn(['listData', action.page], action.data);
+        .setIn(['orgInfo', 'loading'], !action.data)
+        .setIn(['orgInfo', 'page'], action.page)
+        .setIn(['orgInfo', 'hasMore'],
+        action.data && action.data.page && action.data.totalPages ?
+        !(action.data.page >= action.data.totalPages) : true)
+        .setIn(['orgInfo', 'listData'], action.data);
     default:
       return state;
   }
