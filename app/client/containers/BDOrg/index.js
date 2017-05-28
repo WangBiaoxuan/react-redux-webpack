@@ -9,12 +9,10 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import $ from 'jquery';
 import Helmet from 'react-helmet';
-//import InfiniteScroll from 'react-infinite-scroller';
 
 /**
 * internal
 */
-import ProjectItem from '../../components/ProjectItem';
 import LoadHint from '../../components/LoadHint';
 import ProItem from '../../components/ProItem';
 
