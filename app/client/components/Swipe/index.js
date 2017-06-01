@@ -14,7 +14,7 @@ class Swipe extends PureComponent {
               key={data.length}>
               {
                 data && data.length && data.map((item, index) => {
-                  return <div key={index}><img src={item.url}></img></div>;
+                  return <div key={index}><img src={item.url} role="presentation"></img></div>;
                 })
               }
           </ReactSwipe>
