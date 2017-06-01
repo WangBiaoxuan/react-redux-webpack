@@ -15,6 +15,7 @@ import Helmet from 'react-helmet';
 */
 import LoadHint from '../../components/LoadHint';
 import ProItem from '../../components/ProItem';
+import Swipe from '../../components/Swipe';
 
 /**
  * Internal dependencies
@@ -65,6 +66,12 @@ export class BdOrg extends PureComponent {
     this.hasMore = hasMore;
     listData && listData.data ? this.proItems = this.proItems.concat(listData.data) : [];
 
+    let arrImg = [
+      { url: 'https://pic.36krcnd.com/avatar/201705/27082118/7q1ds6m12xxq1cny.jpg!480' },
+      { url: 'https://pic.36krcnd.com/avatar/201705/26105102/q2xqairchjx3c8ja.jpeg!480' },
+      { url: 'https://pic.36krcnd.com/avatar/201705/28041426/psq3p59r5nq0znml.png!480' },
+      ];
+
     return (
       <div className="bdorg-container">
           <Helmet
@@ -75,7 +82,9 @@ export class BdOrg extends PureComponent {
             ]}
           />
         <div className="bdorg-content">
-            <div className="bdorg-top"></div>
+            <div className="bdorg-top">
+              <Swipe data={arrImg}></Swipe>
+            </div>
               <div className="projects-list" ref="scrollDiv">
                 {
                   this.proItems ? <ProItem data={this.proItems} loading={loading} hasMore={hasMore}/> :
