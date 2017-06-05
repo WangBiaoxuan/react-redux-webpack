@@ -3,6 +3,7 @@
  */
 import React, { PureComponent } from 'react';
 import ReactSwipe from 'react-swipe';
+import PropTypes from 'prop-types';
 
 import './style.less';
 class Swipe extends PureComponent {
@@ -23,7 +24,7 @@ class Swipe extends PureComponent {
 }
 
 Swipe.propTypes = {
-  data: React.PropTypes.array.isRequired,
+  data: PropTypes.array.isRequired,
 };
 
 export default Swipe;

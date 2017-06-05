@@ -26,19 +26,29 @@ class ProjectItem extends PureComponent {
     }
 
     return <Link to={`/project/`} id={id}>
-          <div className="metal">
-              {metal}
+          <div className="left">
+            <div className="metal">
+                {metal}
+            </div>
           </div>
-          <div className="logo">
-            <div className={border} style={{ backgroundImage: `url(${get(data, 'logo')})` }}></div>
-          </div>
-          <div className="content">
-            <div className="title">{get(data, 'name')}</div>
-            <div className="num">{get(data, 'projectCount')}</div>
-            <div className="phase">{get(data, 'projectCount')}</div>
-          </div>
-          <div className="spec">
-            <span className="num">{get(data, 'projectCount')}</span>
+          <div className="right">
+            <div className="logo">
+              <div className={border} style={{ backgroundImage: `url(${get(data, 'logo')})` }}></div>
+            </div>
+            <div className="content">
+              <div className="title">{get(data, 'name')}</div>
+              <div className="num">
+                <span>浏览量</span>
+                {get(data, 'projectCount')}
+              </div>
+            </div>
+            <div className="spec">
+              {
+                id < 3 ? <div className="num top3Color">{get(data, 'projectCount')}</div> :
+                <div className="num">{get(data, 'projectCount')}</div>
+              }
+              <div className="txt">约谈量</div>
+            </div>
           </div>
         </Link>;
   }

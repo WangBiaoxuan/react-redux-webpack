@@ -16,6 +16,7 @@ import Helmet from 'react-helmet';
 import LoadHint from '../../components/LoadHint';
 import ProItem from '../../components/ProItem';
 import Swipe from '../../components/Swipe';
+import TopBar from '../../components/TopBar';
 
 /**
  * Internal dependencies
@@ -64,7 +65,7 @@ export class BdOrg extends PureComponent {
     const { listData, hasMore, page, loading } = this.props;
     this.currPage = page;
     this.hasMore = hasMore;
-    listData && listData.data ? this.proItems = this.proItems.concat(listData.data) : [];
+    listData && listData.data.length > 0 ? this.proItems = this.proItems.concat(listData.data) : [];
 
     let arrImg = [
       { url: 'https://pic.36krcnd.com/avatar/201705/27082118/7q1ds6m12xxq1cny.jpg!480' },
@@ -81,6 +82,7 @@ export class BdOrg extends PureComponent {
               { name: 'description', content: '风口机构排行榜' },
             ]}
           />
+        <TopBar></TopBar>
         <div className="bdorg-content">
             <div className="bdorg-top">
               <Swipe data={arrImg}></Swipe>
