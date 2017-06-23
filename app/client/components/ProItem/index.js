@@ -6,7 +6,7 @@
  * External dependencies
  */
 import React from 'react';
-
+import { PropTypes } from 'prop-types';
 /**
  * Internal dependencies
  */
@@ -31,8 +31,8 @@ function ProItem(props) {
 }
 
 ProItem.propTypes = {
-  loading: React.PropTypes.bool.isRequired,
-  data: React.PropTypes.array.isRequired,
+  loading: PropTypes.bool.isRequired,
+  data:  PropTypes.array.isRequired,
 };
 
 ProItem.defaultProps = {

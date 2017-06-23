@@ -41,8 +41,8 @@ if (env['process.env'].NODE_ENV !== '"production"') {
 }
 
 if (env['process.env'].API_ENV === '"prod"') {
-  publicPath = '/';
-  publicUrl = '/';
+  publicPath = './';
+  publicUrl = './';
 }
 
 module.exports = {

@@ -25,7 +25,7 @@ class ProjectItem extends PureComponent {
       border = 'cover normal-border';
     }
 
-    return <Link to={`/project/`} id={id}>
+    return <Link to={`/demo/`} id={id}>
           <div className="left">
             <div className="metal">
                 {metal}
