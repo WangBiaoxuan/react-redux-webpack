@@ -17,7 +17,7 @@ const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
 /**
  * Internal dependencies
  */
-const paths = require('../config/paths');
+const paths = require('../global/paths');
 const config = require('../webpack/client/production');
 
 if (!checkRequiredFiles([paths.indexHtml, paths.indexJs])) {

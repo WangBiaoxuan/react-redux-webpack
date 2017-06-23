@@ -100,17 +100,17 @@ export class BdOrg extends PureComponent {
 }
 
 function mapStateToProps(state, props) {
-  const bgorg = state.bgorg;
+  const bdorg = state.bdorg;
   const layout = state.layout;
 
   return {
     userInfoData: layout.getIn(['userInfo', 'data']),
-    totalCount: bgorg.getIn(['orgInfo', 'totalCount']),
-    page: bgorg.getIn(['orgInfo', 'page']),
-    totalPages: bgorg.getIn(['orgInfo', 'totalPages']),
-    loading: bgorg.getIn(['orgInfo', 'loading']),
-    listData: bgorg.getIn(['orgInfo', 'listData']),
-    hasMore: bgorg.getIn(['orgInfo', 'hasMore']),
+    totalCount: bdorg.getIn(['orgInfo', 'totalCount']),
+    page: bdorg.getIn(['orgInfo', 'page']),
+    totalPages: bdorg.getIn(['orgInfo', 'totalPages']),
+    loading: bdorg.getIn(['orgInfo', 'loading']),
+    listData: bdorg.getIn(['orgInfo', 'listData']),
+    hasMore: bdorg.getIn(['orgInfo', 'hasMore']),
   };
 }
 

@@ -1,7 +1,7 @@
 export default function aboutRoute(loadModule, injectReducer) {
   return {
-    path: '/bgorg',
-    name: 'bgorg',
+    path: '/',
+    name: 'bdorg',
     getComponent(nextState, cb) {
       require.ensure([
         '../../containers/BdOrg',
@@ -10,7 +10,7 @@ export default function aboutRoute(loadModule, injectReducer) {
         const component = require('../../containers/BdOrg');
         const reducer = require('../../containers/BdOrg/reducer').default;
 
-        injectReducer('bgorg', reducer);
+        injectReducer('bdorg', reducer);
         loadModule(cb, component);
       });
     },

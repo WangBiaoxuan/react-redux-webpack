@@ -1,6 +1,6 @@
 export default function aboutRoute(loadModule) {
   return {
-    path: '/',
+    path: '/demo',
     name: 'demo',
     getComponent(nextState, cb) {
       require.ensure([], (require) => {

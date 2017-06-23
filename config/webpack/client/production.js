@@ -41,8 +41,8 @@ if (env['process.env'].NODE_ENV !== '"production"') {
 }
 
 if (env['process.env'].API_ENV === '"prod"') {
-  publicPath = '//sta.36krcnd.com/youyu/';
-  publicUrl = '//sta.36krcnd.com/youyu';
+  publicPath = '/';
+  publicUrl = '/';
 }
 
 module.exports = {
